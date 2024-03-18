@@ -1,0 +1,117 @@
+.header{
+    width: 100%;
+    box-shadow: 0 0 15px rgb(185, 185, 185);
+    height: 4rem;
+    padding: 0.5rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 18px;
+    font-weight: 600;
+    input{
+        width: 400px;
+        padding: 0.6rem 1rem;
+        border: 1px solid rgba(124, 124, 124, 0.39);
+        border-radius: 25px;
+        font-size: 16px;
+        outline: none;
+    }
+}
+main{
+    padding: 1rem 4rem;
+    .add{
+        all: unset;
+        padding: 0.7rem;
+        font-weight: 700;
+        font-size: 18px;
+        float: right;
+        cursor: pointer;
+        &:hover{
+            border-radius: 15px;
+            transition: 0.3s ease-in-out;
+            background-color: rgba(177, 176, 175, 0.253);
+        }
+    }
+    .employeeCards{
+        margin-top: 3rem;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 30px;
+        padding: 1rem;
+        justify-content: center;
+        .card{
+            width: 100%;
+            max-width: 350px;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            background-color: white;
+            box-shadow: 0 0 5px rgb(185, 185, 185);
+            img{
+                width: 100px;
+                height: 100px;
+                border-radius: 50%;
+                border: 1px solid  rgba(128, 128, 128, 0.582);
+                padding: 2px;
+            }
+            .name{
+                text-align: center;
+                .empName{
+                    font-weight: 700;
+                }
+                .mail{
+                    font-size: 14px;
+                }
+            }
+            .icons{
+                width: 250px;
+                display: flex;
+                justify-content: space-between;
+            }
+            .infos{
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                .info_left, .info_right{
+                    display: flex;
+                    flex-direction: column;
+                    gap: 20px;
+                    width: 150px;
+                    .info{
+                        .work{
+                            text-align: center;
+                            font-weight: 700;
+                        }
+                        .title{
+                            text-align: center;
+                            font-size: 14px;
+                        }
+                    }
+                }
+            }
+            
+        }
+    }
+
+}
+.ant-modal-root{
+    .ant-modal-body{
+        form{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            .field{
+                width: 100%;
+                max-width: 400px;
+                height: 35px;
+                padding: 0.7rem;
+                border-radius: 8px;
+                outline: none;
+                border: 1px solid #a3a3a396;
+            }
+        }
+    }
+}
