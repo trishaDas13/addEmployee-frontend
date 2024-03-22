@@ -3,6 +3,7 @@ import "./style.scss";
 import { Button, Modal } from "antd";
 import Card from "./Card";
 import axios from "axios";
+import { nanoid } from "nanoid";
 
 const initialState = {
   name: "",
@@ -46,20 +47,32 @@ const Main = () => {
   const [employeeList, setEmployeeList] = useState([]);
   const [state, dispatch] = useReducer(reducer, initialState);
 
-   //todo: fetch data from api
+  //todo: fetch data from api
   const getEmployee = async () => {
     try {
       let res = await axios.get(
-        "https://addemployee.onrender.com/dashboard/employee/get-data"
+        "http://localhost:10000/dashboard/employee/get-data"
       );
       setEmployeeList(res.data.result);
     } catch (error) {
-      console.log("facing error at the of fwtching data", error);
+      console.log("facing error at the of fetching data", error);
     }
   };
 
   //todo: post data to api
   const addEmployeeToServer = async () => {
+    if (
+      state.name === "" ||
+      state.email === "" ||
+      state.department === "" ||
+      state.designation === "" ||
+      state.dateOfJoining === "" ||
+      state.salary === ""
+    ) {
+      alert("Please fill in all fields");
+      return;
+    }
+
     let employeeInfo = {
       name: state.name,
       email: state.email,
@@ -69,28 +82,30 @@ const Main = () => {
       salary: state.salary,
     };
     try {
-      let res = await axios.post("https://addemployee.onrender.com/dashboard/employee/post-data", employeeInfo);
-      if (
-        employeeInfo.name === "" ||
-        employeeInfo.email === "" ||
-        employeeInfo.department === "" ||
-        employeeInfo.designation === "" ||
-        employeeInfo.dateOfJoining === "" ||
-        employeeInfo.salary === ""
-      ) {
-        alert("Please fill in all fields");
-        return;
-      } else {
-        dispatch({ type: "addEmployee" });
-        getEmployee();
-        setModalOpen(false);
-      }
-      
+      let res = await axios.post(
+        "http://localhost:10000/dashboard/employee/post-data",
+        employeeInfo
+      );
+      dispatch({ type: "addEmployee" });
+      getEmployee();
+      setModalOpen(false);
     } catch (err) {
       console.log("Error while adding Employee ", err);
     }
   };
+  //todo: handle delete employee
+  const handleDeleteFromUI = (id) => {
+    setEmployeeList(employeeList.filter((employee) => employee._id !== id));
+  };
 
+  //todo: handle edit employee
+  const handleUpdate = (updatedData) => {
+    setEmployeeList((prevList) =>
+      prevList.map((emp) => (emp._id === updatedData._id ? updatedData : emp))
+    );
+  };
+
+  //todo: render all data on load
   useEffect(() => {
     getEmployee();
   }, []);
@@ -192,7 +207,16 @@ const Main = () => {
 
       <div className="employeeCards">
         {employeeList.map((employee, index) => (
-          <Card key={index} employee={employee} />
+          <Card
+            key={nanoid()}
+            employee={employee}
+            index={index}
+            onDelete={handleDeleteFromUI}
+            addEmployeeAction={dispatch}
+            setModalOpen = {setModalOpen}
+            state={state}
+            handleUpdate={handleUpdate}
+          />
         ))}
       </div>
     </main>
