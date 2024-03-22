@@ -8,7 +8,7 @@ const Card = ({ employee, onDelete, addEmployeeAction, setModalOpen, state, hand
   const handleDelete = async (id) => {
     try {
       let res = await axios.delete(
-        `http://localhost:10000/dashboard/employee/delete-data/${id}`
+        `https://addemployee.onrender.com/dashboard/employee/delete-data/${id}`
       );
       onDelete(id); // Remove the card from UI
       addEmployeeAction({ type: "addEmployee" }); //Remove it from database
@@ -28,7 +28,7 @@ const Card = ({ employee, onDelete, addEmployeeAction, setModalOpen, state, hand
     };
     try {
       let res = await axios.put(
-        `http://localhost:10000/dashboard/employee/edit-data`,
+        `https://addemployee.onrender.com/dashboard/employee/edit-data`,
         employeeInfo
       );
       handleUpdate(employeeID);

@@ -51,7 +51,7 @@ const Main = () => {
   const getEmployee = async () => {
     try {
       let res = await axios.get(
-        "http://localhost:10000/dashboard/employee/get-data"
+        "https://addemployee.onrender.com/dashboard/employee/get-data"
       );
       setEmployeeList(res.data.result);
     } catch (error) {
@@ -83,7 +83,7 @@ const Main = () => {
     };
     try {
       let res = await axios.post(
-        "http://localhost:10000/dashboard/employee/post-data",
+        "https://addemployee.onrender.com/dashboard/employee/post-data",
         employeeInfo
       );
       dispatch({ type: "addEmployee" });
