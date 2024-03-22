@@ -105,121 +105,137 @@ const Main = () => {
     );
   };
 
+  //todo: filter employee list
+  // const filterEmployee = (e) => {
+  //   const searchTerm = e.target.value.toLowerCase();
+  //   const filteredEmployees = initialState.employees.filter((employee) =>
+  //     employee.name.toLowerCase().includes(searchTerm)
+  //   );
+  //   setEmployeeList(filteredEmployees);
+  //   getEmployee();
+  // };
+
   //todo: render all data on load
   useEffect(() => {
     getEmployee();
   }, []);
 
   return (
-    <main className="main">
-      <button className="add" onClick={() => setModalOpen(true)}>
-        + Add Employee
-      </button>
-      <Modal
-        title="Create new employee"
-        centered
-        open={modalOpen}
-        onCancel={() => setModalOpen(false)}
-        footer={<Button onClick={addEmployeeToServer}>Create</Button>}
-      >
-        <form action="">
-          <input
-            type="text"
-            placeholder="Name"
-            className="field"
-            value={state.name}
-            onChange={(e) =>
-              dispatch({
-                type: "updateField",
-                fieldName: "name",
-                payload: e.target.value,
-              })
-            }
-          />
-          <input
-            type="email"
-            placeholder="Email ID"
-            className="field"
-            value={state.email}
-            onChange={(e) =>
-              dispatch({
-                type: "updateField",
-                fieldName: "email",
-                payload: e.target.value,
-              })
-            }
-          />
-          <input
-            type="text"
-            placeholder="Department"
-            className="field"
-            value={state.department}
-            onChange={(e) =>
-              dispatch({
-                type: "updateField",
-                fieldName: "department",
-                payload: e.target.value,
-              })
-            }
-          />
-          <input
-            type="text"
-            placeholder="Designation"
-            className="field"
-            value={state.designation}
-            onChange={(e) =>
-              dispatch({
-                type: "updateField",
-                fieldName: "designation",
-                payload: e.target.value,
-              })
-            }
-          />
-          <input
-            type="date"
-            placeholder="Date of joining"
-            className="field"
-            value={state.dateOfJoining}
-            onChange={(e) =>
-              dispatch({
-                type: "updateField",
-                fieldName: "dateOfJoining",
-                payload: e.target.value,
-              })
-            }
-          />
-          <input
-            type="text"
-            placeholder="Salary"
-            className="field"
-            value={state.salary}
-            onChange={(e) =>
-              dispatch({
-                type: "updateField",
-                fieldName: "salary",
-                payload: e.target.value,
-              })
-            }
-          />
-          {/* <input type="file" /> */}
-        </form>
-      </Modal>
+    <>
+      <header className="header">
+        <p>Employee Dashboard</p>
+        {/* <input type="text" placeholder="Search by name..." onChange={filterEmployee}/> */}
+        <button className="add" onClick={() => setModalOpen(true)}>
+          + Add Employee
+        </button>
+      </header>
+      <main className="main">
+        <Modal
+          title="Create new employee"
+          centered
+          open={modalOpen}
+          onCancel={() => setModalOpen(false)}
+          footer={<Button onClick={addEmployeeToServer}>Create</Button>}
+        >
+          <form action="">
+            <input
+              type="text"
+              placeholder="Name"
+              className="field"
+              value={state.name}
+              onChange={(e) =>
+                dispatch({
+                  type: "updateField",
+                  fieldName: "name",
+                  payload: e.target.value,
+                })
+              }
+            />
+            <input
+              type="email"
+              placeholder="Email ID"
+              className="field"
+              value={state.email}
+              onChange={(e) =>
+                dispatch({
+                  type: "updateField",
+                  fieldName: "email",
+                  payload: e.target.value,
+                })
+              }
+            />
+            <input
+              type="text"
+              placeholder="Department"
+              className="field"
+              value={state.department}
+              onChange={(e) =>
+                dispatch({
+                  type: "updateField",
+                  fieldName: "department",
+                  payload: e.target.value,
+                })
+              }
+            />
+            <input
+              type="text"
+              placeholder="Designation"
+              className="field"
+              value={state.designation}
+              onChange={(e) =>
+                dispatch({
+                  type: "updateField",
+                  fieldName: "designation",
+                  payload: e.target.value,
+                })
+              }
+            />
+            <input
+              type="date"
+              placeholder="Date of joining"
+              className="field"
+              value={state.dateOfJoining}
+              onChange={(e) =>
+                dispatch({
+                  type: "updateField",
+                  fieldName: "dateOfJoining",
+                  payload: e.target.value,
+                })
+              }
+            />
+            <input
+              type="text"
+              placeholder="Salary"
+              className="field"
+              value={state.salary}
+              onChange={(e) =>
+                dispatch({
+                  type: "updateField",
+                  fieldName: "salary",
+                  payload: e.target.value,
+                })
+              }
+            />
+            {/* <input type="file" /> */}
+          </form>
+        </Modal>
 
-      <div className="employeeCards">
-        {employeeList.map((employee, index) => (
-          <Card
-            key={nanoid()}
-            employee={employee}
-            index={index}
-            onDelete={handleDeleteFromUI}
-            addEmployeeAction={dispatch}
-            setModalOpen = {setModalOpen}
-            state={state}
-            handleUpdate={handleUpdate}
-          />
-        ))}
-      </div>
-    </main>
+        <div className="employeeCards">
+          {employeeList.map((employee, index) => (
+            <Card
+              key={nanoid()}
+              employee={employee}
+              index={index}
+              onDelete={handleDeleteFromUI}
+              addEmployeeAction={dispatch}
+              setModalOpen={setModalOpen}
+              state={state}
+              handleUpdate={handleUpdate}
+            />
+          ))}
+        </div>
+      </main>
+    </>
   );
 };
 

@@ -46,7 +46,7 @@ const Card = ({ employee, onDelete, addEmployeeAction, setModalOpen, state, hand
   return (
     <div className="card">
       <img
-        src="https://i.pinimg.com/236x/da/fd/f2/dafdf25168edcb2f0e1d8702797946cc.jpg"
+        src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png"
         alt="profile"
       />
       <div className="name">

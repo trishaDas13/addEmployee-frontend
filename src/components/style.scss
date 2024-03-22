@@ -16,9 +16,6 @@
         font-size: 16px;
         outline: none;
     }
-}
-main{
-    padding: 1rem 4rem;
     .add{
         all: unset;
         padding: 0.7rem;
@@ -32,6 +29,11 @@ main{
             background-color: rgba(177, 176, 175, 0.253);
         }
     }
+}
+main{
+    padding: 1rem 4rem;
+    
+    
     .employeeCards{
         margin-top: 3rem;
         display: flex;
@@ -114,4 +116,5 @@ main{
             }
         }
     }
+
 }
